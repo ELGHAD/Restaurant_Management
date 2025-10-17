@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Accueil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <!-- Section d'accueil principale avec jumbotron personnalisé -->
+    <div class="jumbotron text-center bg-light shadow p-5 rounded">
+        <h1 class="display-4 text-primary font-weight-bold">Bienvenue chez Gourmet Delights</h1>
+        <p class="lead text-muted">Explorez des expériences culinaires exceptionnelles tout en optimisant la gestion de votre restaurant.</p>
+        <hr class="my-4">
+        <p class="text-dark">Avec notre système, gérez vos réservations, commandes et menus en toute simplicité.</p>
+        <a class="btn btn-primary btn-lg mt-3" asp-area="" asp-controller="Reservations" asp-action="Index">
+            <i class="bi bi-calendar-check"></i> Voir les Réservations
+        </a>
+        <a class="btn btn-success btn-lg mt-3" asp-area="" asp-controller="Plats" asp-action="Index">
+            <i class="bi bi-list-ul"></i> Consulter le Menu
+        </a>
+    </div>
+
+    <!-- Section avec image et texte sur l'engagement du restaurant -->
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <img src="~/images/restaurant.jpg" alt="Restaurant" class="img-fluid rounded shadow-sm" />
+        </div>
+        <div class="col-md-6 d-flex flex-column justify-content-center">
+            <p class="lead text-muted">Chez Gourmet Delights, nous nous engageons à offrir une expérience gastronomique inoubliable. Profitez de nos services tout en optimisant la gestion de votre établissement.</p>
+            <a class="btn btn-primary btn-lg mt-3" asp-area="" asp-controller="Reservations" asp-action="Index">
+                <i class="bi bi-calendar-check"></i> Voir les Réservations
+            </a>
+            <a class="btn btn-success btn-lg mt-3" asp-area="" asp-controller="Plats" asp-action="Index">
+                <i class="bi bi-list-ul"></i> Consulter le Menu
+            </a>
+        </div>
+    </div>
+
+    <!-- Section de services avec cartes attrayantes -->
+    <div class="row mt-5 text-center">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="~/images/commandes.jpg" alt="Commandes" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Gestion des Commandes</h5>
+                    <p class="card-text">Suivez et gérez toutes les commandes efficacement pour offrir un service rapide et précis.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="~/images/menu.jpg" alt="Menu" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Menu Diversifié</h5>
+                    <p class="card-text">Mettez à jour et gérez votre menu en toute simplicité pour offrir de nouvelles options à vos clients.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="~/images/reservations.jpg" alt="Réservations" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Réservations Simplifiées</h5>
+                    <p class="card-text">Permettez à vos clients de réserver facilement une table en ligne via notre interface intuitive.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

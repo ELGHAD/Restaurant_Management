@@ -1,0 +1,82 @@
+﻿@model restaurant3.Models.Commande
+
+@{
+    ViewData["Title"] = "Créer une Commande";
+}
+
+<h1 class="text-center mb-4" style="color: #007bff;">Créer une Commande</h1>
+
+<div class="card shadow-lg p-5 mb-5 bg-white rounded" style="border: 2px solid #007bff;">
+    <h4 class="card-title text-center mb-4" style="color: #6c757d;">Détails de la Commande</h4>
+    <hr class="mb-4" style="border-top: 2px solid #007bff;">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <form asp-action="Create" class="needs-validation" novalidate>
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none" role="alert"></div>
+
+                <!-- ID du Client -->
+                <div class="form-group mb-4">
+                    <label asp-for="IdClient" class="form-label fw-bold" style="color: #495057;">ID du Client</label>
+                    <input asp-for="IdClient" class="form-control" style="border: 2px solid #007bff;" placeholder="Entrez l'ID du client" />
+                    <span asp-validation-for="IdClient" class="text-danger"></span>
+                </div>
+
+                <!-- Total -->
+                <div class="form-group mb-4">
+                    <label asp-for="Total" class="form-label fw-bold" style="color: #495057;">Montant Total (€)</label>
+                    <input asp-for="Total" class="form-control" style="border: 2px solid #007bff;" placeholder="Saisissez le montant total" />
+                    <span asp-validation-for="Total" class="text-danger"></span>
+                </div>
+
+                <!-- Type de Commande -->
+                <div class="form-group mb-4">
+                    <label asp-for="TypeCommande" class="form-label fw-bold" style="color: #495057;">Type de Commande</label>
+                    <select asp-for="TypeCommande" class="form-select" style="border: 2px solid #007bff;">
+                        <option value="">-- Sélectionnez le type --</option>
+                        <option value="DineIn">Sur Place</option>
+                        <option value="TakeAway">À Emporter</option>
+                        <option value="Delivery">Livraison</option>
+                    </select>
+                    <span asp-validation-for="TypeCommande" class="text-danger"></span>
+                </div>
+
+                <!-- Boutons d'action -->
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary btn-lg px-4 me-3 shadow" style="background-color: #007bff; border-color: #007bff;">
+                        <i class="fas fa-check-circle"></i> Créer
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary btn-lg px-4 shadow" style="border-color: #6c757d; color: #6c757d;">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Validation Scripts -->
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <!-- Script de validation utilisateur -->
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            document.querySelector('.alert-danger').classList.remove('d-none');
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+}

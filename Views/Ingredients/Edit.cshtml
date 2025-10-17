@@ -1,0 +1,44 @@
+﻿@model restaurant3.Models.Ingredient
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Ingredient</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdIngredient" />
+            <div class="form-group">
+                <label asp-for="NomIngredient" class="control-label"></label>
+                <input asp-for="NomIngredient" class="form-control" />
+                <span asp-validation-for="NomIngredient" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuantiteStock" class="control-label"></label>
+                <input asp-for="QuantiteStock" class="form-control" />
+                <span asp-validation-for="QuantiteStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Unite" class="control-label"></label>
+                <input asp-for="Unite" class="form-control" />
+                <span asp-validation-for="Unite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

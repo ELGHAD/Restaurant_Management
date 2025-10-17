@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Gourmet Delights</title>
+
+    <!-- Lien vers Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Lien vers le fichier CSS personnalisé -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <!-- Lien vers des icônes FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Lien vers les styles spécifiques du restaurant -->
+    <link rel="stylesheet" href="~/restaurant3.styles.css" asp-append-version="true" />
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #343a40;
+            color: white;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            font-size: 1.1rem;
+            color: #f8f9fa !important;
+        }
+
+            .navbar-nav .nav-item .nav-link:hover {
+                color: #ffc107 !important;
+            }
+
+        .navbar-nav .nav-item.active .nav-link {
+            color: #ffc107 !important;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-item .nav-link i {
+            margin-right: 8px;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 10px 0;
+        }
+
+            footer a {
+                color: #ffc107;
+            }
+
+                footer a:hover {
+                    color: #ffcc00;
+                }
+    </style>
+</head>
+<body>
+    <!-- Header de la page -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/"><i class="fas fa-home"></i>Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Commandes"><i class="fas fa-clipboard-list"></i>Commandes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Ingredients"><i class="fas fa-cogs"></i>Ingredients</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Plats"><i class="fas fa-utensils"></i>Plats</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Reservations"><i class="fas fa-calendar-check"></i>Reservations</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Ventes"><i class="fas fa-cash-register"></i>Ventes</a>
+                        </li>
+                        <li class="nav-item">
+                            <partial name="_LoginPartial" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Section principale -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container">
+            &copy; 2025 - Gourmet Delights | <a href="/Home/Privacy">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
