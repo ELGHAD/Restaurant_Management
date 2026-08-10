@@ -1,96 +1,128 @@
-# Restaurant Management (restaurant3)
+# Restaurant Management System
 
-A simple ASP.NET Core MVC restaurant management system scaffolded with Entity Framework Core and Identity. The app manages dishes (plats), ingredients, orders (commandes), sales (ventes), reservations, employees, and users.
+Application de gestion de restaurant développée en ASP.NET Core MVC, illustrant la mise en place d'une architecture full-stack .NET avec Entity Framework Core, authentification sécurisée et modélisation de données relationnelle avancée.
 
-## Features
+![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-MVC-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+![Entity Framework](https://img.shields.io/badge/Entity_Framework-Core_9-68217A?style=flat-square)
+![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Active_Development-orange?style=flat-square)
 
-- CRUD for Plats (dishes), Ingredients, Employees, Reservations, Commandes (orders), Ventes (sales).
-- Many-to-many relationship between Plats and Ingredients (PlatsIngredients) with quantity required.
-- Computed columns at the database level for line totals and final sale amounts.
-- ASP.NET Core Identity for authentication (Razor Identity pages present in Areas/Identity).
-- Entity Framework Core with SQL Server database (`bd_naami`).
+---
 
-## Tech stack
+## Présentation du projet
 
-- .NET 8 (net8.0)
-- ASP.NET Core MVC + Razor Pages
-- Entity Framework Core (EF Core) 9
-- Microsoft SQL Server
-- ASP.NET Core Identity
-- Bootstrap, jQuery for front-end scaffolding
+Ce projet est une application web de gestion de restaurant construite avec **ASP.NET Core MVC** et **Entity Framework Core**. Il centralise la gestion des plats, des ingrédients, des commandes, des ventes, des réservations et des employés au sein d'une seule plateforme.
 
-## Repository structure (important parts)
+L'objectif technique était de concevoir un modèle de données relationnel réaliste (relations many-to-many, colonnes calculées côté base de données) tout en intégrant un système d'authentification robuste via ASP.NET Core Identity, dans le respect des conventions de l'architecture MVC.
 
-- `Controllers/` - MVC controllers for domain entities (Commandes, Plats, Ingredients, Reservations, Ventes, Employes, etc.)
-- `Models/` - EF Core DbContext (`BdNaamiContext`) and entity classes
-- `Areas/Identity/` - Identity Razor Pages for authentication
-- `Views/` - Razor views for the MVC controllers
-- `wwwroot/` - static files (CSS, JS, libs)
+Ce projet met en avant ma capacité à concevoir, structurer et livrer une application backend complète, de la modélisation de la base de données jusqu'à l'interface utilisateur.
 
-## Prerequisites
+---
 
-- .NET SDK 8.0+ installed: https://dotnet.microsoft.com/en-us/download
-- Microsoft SQL Server accessible (local or remote). The project uses a database named `bd_naami` by default.
-- (Optional) Visual Studio 2022/2023 or Visual Studio Code for development.
+## Fonctionnalités
 
-## Configuration
+- Gestion complète (CRUD) des plats, ingrédients, employés, réservations, commandes et ventes.
+- Relation many-to-many entre Plats et Ingredients via une table de jonction dédiée (PlatsIngredients), avec gestion des quantités.
+- Colonnes calculées au niveau base de données pour garantir la cohérence des totaux de commande et des montants de vente.
+- Authentification et gestion des comptes via ASP.NET Core Identity (Razor Pages).
+- Accès aux données entièrement piloté par Entity Framework Core, avec gestion des migrations.
 
-Connection strings live in `appsettings.json`. Two keys are present:
+---
 
-- `ConnectionStrings:BdNaamiContextConnection`
-- `ConnectionStrings:Restaurant3ContextConnection`
+## Stack technique
 
-Example (already present):
+| Composant | Technologie |
+|---|---|
+| Framework | .NET 8 |
+| Backend | ASP.NET Core MVC |
+| ORM | Entity Framework Core 9 |
+| Base de données | Microsoft SQL Server |
+| Authentification | ASP.NET Core Identity |
+| Frontend | Razor Views, Bootstrap, jQuery |
+| Architecture | MVC (Model-View-Controller) |
+| Gestion de schéma | EF Core Migrations |
+
+---
+
+## Installation et démarrage
+
+### Prérequis
+
+- .NET SDK 8.0 ou supérieur
+- Microsoft SQL Server (local ou distant)
+- Visual Studio 2022/2023 ou Visual Studio Code
+
+### 1. Cloner le dépôt
+
+```bash
+git clone https://github.com/ELGHAD/Restaurant_Management.git
+cd Restaurant_Management
+```
+
+### 2. Configurer la connexion à la base de données
+
+Adapter la chaîne de connexion dans `appsettings.json` :
 
 ```json
 "ConnectionStrings": {
-  "BdNaamiContextConnection": "Server=znaami;Database=bd_naami;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True;",
-  "Restaurant3ContextConnection": "Server=znaami;Database=bd_naami;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True;"
+  "BdNaamiContextConnection": "Server=VOTRE_SERVEUR;Database=bd_naami;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True;",
+  "Restaurant3ContextConnection": "Server=VOTRE_SERVEUR;Database=bd_naami;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True;"
 }
 ```
 
-Important: `Models/BdNaamiContext.cs` currently contains a scaffolded, hard-coded connection string in `OnConfiguring`. For security and portability, update the context to use configuration only (see Recommended changes below).
+### 3. Restaurer les dépendances et compiler le projet
 
-## Run locally (PowerShell)
-
-Open PowerShell in the project root (`restaurant3`) and run:
-
-```powershell
-# restore and build
+```bash
 dotnet restore
 dotnet build
-
-# run app
-dotnet run
 ```
 
-If you get an error that `dotnet` is not recognized, install the .NET SDK first.
+### 4. Appliquer les migrations Entity Framework
 
-## Database migrations
-
-If you need to create or update the database, use EF Core tools. From the project root:
-
-```powershell
-# install dotnet-ef tool if needed
+```bash
 dotnet tool install --global dotnet-ef
-
-# apply migrations
 dotnet ef database update
 ```
 
-Note: The project already contains a `Migrations/` folder with at least one migration.
+### 5. Lancer l'application
 
-## Recommended changes / TODOs
+```bash
+dotnet run
+```
 
-- Remove the hard-coded connection string in `Models/BdNaamiContext.cs` and read from `IConfiguration` instead. This improves security and makes the app configurable per environment.
-- Add a `README` section describing database seed data and how to create an admin account.
-- Add role-based authorization for admin vs staff vs customer pages where appropriate.
-- Add automated tests for core business logic (e.g., order totals, computed columns, reservation flows).
+L'application est accessible à l'adresse indiquée dans la console (généralement `https://localhost:5001`).
 
-## Troubleshooting
+---
 
-- "dotnet not recognized": install the .NET SDK and reopen the terminal.
-- DB connection errors: verify the server name, credentials, and that SQL Server allows connections from your machine. Adjust `appsettings.json` to match your environment.
+## Structure du projet
+    Restaurant_Management/
+    ├── Areas/
+    │ └── Identity/ # Pages Razor pour l'authentification (ASP.NET Core Identity)
+    ├── Controllers/ # Contrôleurs MVC (Commandes, Plats, Ingredients, Reservations, Ventes, Employes)
+    ├── Models/ # DbContext (BdNaamiContext) et entités du domaine
+    ├── Migrations/ # Historique des migrations Entity Framework Core
+    ├── Views/ # Vues Razor associées aux contrôleurs
+    ├── wwwroot/ # Fichiers statiques (CSS, JS, librairies front-end)
+    ├── appsettings.json # Configuration de l'application
+    ├── Program.cs # Point d'entrée de l'application
+    └── restaurant3.csproj # Fichier projet .NET
 
+---
 
+## Sécurité et bonnes pratiques
 
+- Authentification gérée via ASP.NET Core Identity.
+- Accès aux données via un ORM (Entity Framework Core), limitant l'exposition aux injections SQL grâce aux requêtes paramétrées.
+- Intégrité des totaux de commande et de vente assurée par des colonnes calculées au niveau base de données.
+
+### Axes d'amélioration en cours
+
+- Externalisation complète des chaînes de connexion via `IConfiguration` et variables d'environnement, en remplacement de la configuration codée en dur actuellement présente dans `Models/BdNaamiContext.cs`.
+- Mise en place d'une autorisation basée sur les rôles (administrateur, personnel, client).
+- Ajout d'une suite de tests automatisés couvrant la logique métier critique (calcul des totaux, flux de réservation).
+
+---
+
+Ouvert aux retours, questions techniques et opportunités professionnelles.
