@@ -111,7 +111,7 @@ Example:
 ```json
 {
   "ConnectionStrings": {
-    "BdNaamiContextConnection": "Server=YOUR_SERVER;Database=bd_naami;Trusted_Connection=True;TrustServerCertificate=True;"
+    "BdNameContextConnection": "Server=YOUR_SERVER;Database=bd_name;Trusted_Connection=True;TrustServerCertificate=True;"
   }
 }
 ```
